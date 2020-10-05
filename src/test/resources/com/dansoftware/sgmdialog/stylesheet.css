@@ -1,10 +1,9 @@
 .segmentDialog {
-    -fx-background-color: #d2d2d2;
+    -fx-background-color: #fafafa;
 }
 
 .segmentLabelArea {
-    -fx-background-color: #bcbcbc;
-    -fx-padding: 20;
+    -fx-padding: 5;
 }
 
 .segmentDialogBottom {
@@ -12,6 +11,7 @@
 }
 
 .segmentLabelArrow {
+    -svg-path: "M16.01 11H4v2h12.01v3L20 12l-3.99-4z";
     -fx-scale-x: 0.4;
     -fx-scale-y: 0.4;
 }
