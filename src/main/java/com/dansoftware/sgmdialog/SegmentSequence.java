@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public abstract class SegmentSequence implements Iterable<Segment> {
     }
 
     public SegmentSequence(Segment... segments) {
-        this(List.of(segments));
+        this(Arrays.asList(segments));
     }
 
     public boolean isSegmentFirst(Segment segment) {

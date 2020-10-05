@@ -6,7 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -45,8 +44,8 @@ public class SegmentDialogBottom extends BorderPane
         this.prevItemButton = new Button();
         this.rightBox = new HBox(10, nextItemButton);
 
-        this.nextItemTextProperty = new BiStringProperty(resourceBundle.getString(NEXT_BUTTON_STRING), StringUtils.EMPTY, StringUtils.EMPTY);
-        this.prevItemTextProperty = new BiStringProperty(resourceBundle.getString(PREV_BUTTON_STRING), StringUtils.EMPTY, StringUtils.EMPTY);
+        this.nextItemTextProperty = new BiStringProperty(resourceBundle.getString(NEXT_BUTTON_STRING), "", "");
+        this.prevItemTextProperty = new BiStringProperty(resourceBundle.getString(PREV_BUTTON_STRING), "", "");
 
         this.nextItemButton.textProperty().bind(nextItemTextProperty);
         this.prevItemButton.textProperty().bind(prevItemTextProperty);
@@ -107,7 +106,7 @@ public class SegmentDialogBottom extends BorderPane
         }
 
         void setFixValue(String value) {
-            set(value, StringUtils.EMPTY, StringUtils.EMPTY);
+            set(value, "", "");
         }
 
         void set(String prefix, String suffix) {

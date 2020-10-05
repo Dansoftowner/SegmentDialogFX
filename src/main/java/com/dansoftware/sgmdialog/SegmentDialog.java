@@ -50,6 +50,10 @@ public class SegmentDialog extends BorderPane
         this(resourceBundle, segmentSequence, null, null);
     }
 
+    public SegmentDialog(@NotNull SegmentSequence segmentSequence) {
+        this(ResourceBundle.getBundle("com.dansoftware.sgmdialog.BaseSgmDialogValues"), segmentSequence, null, null);
+    }
+
     private void init(SegmentSequence segmentSequence) {
         this.changed(segmentSequence.focusedSegmentProperty(), null, segmentSequence.getFocusedSegment());
     }

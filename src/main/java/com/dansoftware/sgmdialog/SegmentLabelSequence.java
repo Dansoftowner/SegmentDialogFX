@@ -8,10 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.SVGPath;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SegmentLabelSequence extends HBox
         implements ChangeListener<Segment> {
@@ -25,6 +22,7 @@ public class SegmentLabelSequence extends HBox
         this.createGui(segmentSequence);
         this.setSpacing(10);
         this.segmentSequence.focusedSegmentProperty().addListener(this);
+        this.init(segmentSequence);
     }
 
     private void createGui(SegmentSequence segmentSequence) {
@@ -38,12 +36,16 @@ public class SegmentLabelSequence extends HBox
         }
     }
 
+    private void init(SegmentSequence segmentSequence) {
+        this.changed(segmentSequence.focusedSegmentProperty(), null, segmentSequence.getFocusedSegment());
+    }
+
     @Override
     public void changed(ObservableValue<? extends Segment> observable,
                         Segment oldValue,
                         Segment newValue) {
-        segmentLabelMap.get(oldValue).setFocusedState(false);
-        segmentLabelMap.get(newValue).setFocusedState(true);
+        Optional.ofNullable(segmentLabelMap.get(oldValue)).ifPresent(label -> label.setFocusedState(false));
+        Optional.ofNullable(segmentLabelMap.get(newValue)).ifPresent(label -> label.setFocusedState(true));
     }
 
     private static final class Arrow extends SVGPath {
