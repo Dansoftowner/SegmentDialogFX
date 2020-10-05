@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class SegmentLabelSequence extends HBox
+class SegmentLabelSequence extends HBox
         implements ChangeListener<Segment> {
 
     private final Map<Segment, LabelImpl> segmentLabelMap;

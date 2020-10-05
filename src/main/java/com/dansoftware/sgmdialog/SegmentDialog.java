@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SegmentDialog extends BorderPane
@@ -66,7 +67,15 @@ public class SegmentDialog extends BorderPane
         }
 
         logger.debug(String.format("Segment changed: %s", newValue.getTitle()));
-        Node content = newValue.getContent();
-        setCenter(content);
+
+        Optional<Segment> oldSegmentOptional = Optional.ofNullable(oldValue);
+        oldSegmentOptional.ifPresent(segment -> segment.onSegmentHidden(this));
+
+        Optional<Segment> newSegmentOptional = Optional.of(newValue);
+        newSegmentOptional.ifPresent(segment -> {
+            setCenter(segment.getContent());
+            segment.onSegmentFocused(this);
+        });
+
     }
 }

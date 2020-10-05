@@ -1,9 +1,11 @@
 package com.dansoftware.sgmdialog;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,9 +40,75 @@ public class SegmentDialogTest extends Application {
 
     private List<Segment> getSegments() {
         return Arrays.asList(
-                new Segment("Segment 1", new Label("Sg One")),
-                new Segment("Segment 2", new Label("Sg Two")),
-                new Segment("Segment 3", new Label("Sg Three"))
+                new SegmentOne(),
+                new SegmentTwo(),
+                new SegmentThree()
         );
+    }
+
+    private static final class SegmentOne extends Segment {
+
+        public SegmentOne() {
+            super("Segment 1");
+        }
+
+        @Override
+        protected Node getContent() {
+            return new Label("Sg One");
+        }
+
+        @Override
+        protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
+            logger.debug(String.format("%s is hidden", getClass().getSimpleName()));
+        }
+
+        @Override
+        protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+            logger.debug(String.format("%s is focused", getClass().getSimpleName()));
+        }
+    }
+
+    private static final class SegmentTwo extends Segment {
+
+        public SegmentTwo() {
+            super("Segment 2");
+        }
+
+        @Override
+        protected Node getContent() {
+            return new Label("Sg Two");
+        }
+
+        @Override
+        protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
+            logger.debug(String.format("%s is hidden", getClass().getSimpleName()));
+        }
+
+        @Override
+        protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+            logger.debug(String.format("%s is focused", getClass().getSimpleName()));
+        }
+    }
+
+    private static final class SegmentThree extends Segment {
+
+        public SegmentThree() {
+            super("Segment 3");
+        }
+
+        @Override
+        protected Node getContent() {
+            return new Label("Sg Three");
+        }
+
+        @Override
+        protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
+            logger.debug(String.format("%s is hidden", getClass().getSimpleName()));
+        }
+
+        @Override
+        protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+            logger.debug(String.format("%s is focused", getClass().getSimpleName()));
+        }
     }
 }

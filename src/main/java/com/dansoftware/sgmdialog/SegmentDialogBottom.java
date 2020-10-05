@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class SegmentDialogBottom extends BorderPane
+class SegmentDialogBottom extends BorderPane
         implements ChangeListener<Segment> {
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentDialogBottom.class);
