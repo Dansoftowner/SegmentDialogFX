@@ -5,6 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.JMetroStyleClass;
+import jfxtras.styles.jmetro.Style;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +25,10 @@ public class SegmentDialogTest extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         SegmentDialog segmentDialog = new SegmentDialog(getSegmentSequenceImplementation());
+        segmentDialog.getStyleClass().add(JMetroStyleClass.BACKGROUND);
 
         Scene scene = new Scene(segmentDialog);
+        new JMetro(Style.LIGHT).setScene(scene);
         scene.getStylesheets().add(TEST_STYLE_SHEET);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -40,7 +45,7 @@ public class SegmentDialogTest extends Application {
 
     private List<Segment> getSegments() {
         return Arrays.asList(
-                new SegmentOne(),
+                new LanguageSegment(),
                 new SegmentTwo(),
                 new SegmentThree()
         );
