@@ -19,6 +19,8 @@ class SegmentDialogBottom extends BorderPane
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentDialogBottom.class);
 
+    private static final String CLASS_NAME = "segmentDialogBottom";
+
     private static final String NEXT_BUTTON_STRING = "segment.dialog.button.next";
     private static final String FINISH_BUTTON_STRING = "segment.dialog.button.finish";
     private static final String PREV_BUTTON_STRING = "segment.dialog.button.prev";
@@ -38,6 +40,7 @@ class SegmentDialogBottom extends BorderPane
     public SegmentDialogBottom(@NotNull ResourceBundle resourceBundle,
                                @Nullable Button customButton,
                                @NotNull SegmentSequence segmentSequence) {
+        this.getStyleClass().add(CLASS_NAME);
         this.resourceBundle = Objects.requireNonNull(resourceBundle, "ResourceBundle is needed!");
         this.segmentSequence = Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
         this.nextItemButton = new Button();

@@ -13,10 +13,13 @@ import java.util.*;
 class SegmentLabelSequence extends HBox
         implements ChangeListener<Segment> {
 
+    private static final String CLASS_NAME = "segmentLabelArea";
+
     private final Map<Segment, LabelImpl> segmentLabelMap;
     private final SegmentSequence segmentSequence;
 
     public SegmentLabelSequence(@NotNull SegmentSequence segmentSequence) {
+        this.getStyleClass().add(CLASS_NAME);
         this.segmentSequence = Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
         this.segmentLabelMap = new HashMap<>();
         this.createGui(segmentSequence);

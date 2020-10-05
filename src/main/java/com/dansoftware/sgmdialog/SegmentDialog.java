@@ -20,6 +20,8 @@ public class SegmentDialog extends BorderPane
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentDialog.class);
 
+    private static final String SEGMENT_DIALOG_CLASS_NAME = "segmentDialog";
+
     private final SegmentSequence segmentSequence;
     private final SegmentLabelSequence labelSequence;
     private final SegmentDialogBottom dialogBottom;
@@ -29,6 +31,7 @@ public class SegmentDialog extends BorderPane
                          @NotNull SegmentSequence segmentSequence,
                          @Nullable Button customButton,
                          @Nullable Node placeHolder) {
+        this.getStyleClass().add(SEGMENT_DIALOG_CLASS_NAME);
         this.segmentSequence = Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
         this.labelSequence = new SegmentLabelSequence(segmentSequence);
         this.dialogBottom = new SegmentDialogBottom(resourceBundle, customButton, segmentSequence);

@@ -1,3 +1,16 @@
+.segmentDialog {
+    -fx-background-color: #d2d2d2;
+}
+
+.segmentLabelArea {
+    -fx-background-color: #bcbcbc;
+    -fx-padding: 20;
+}
+
+.segmentDialogBottom {
+    -fx-padding: 10;
+}
+
 .segmentLabelArrow {
     -fx-scale-x: 0.4;
     -fx-scale-y: 0.4;
