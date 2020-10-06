@@ -1,5 +1,6 @@
 package com.dansoftware.sgmdialog;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -45,6 +46,7 @@ public class SegmentDialog extends BorderPane
         this.setPadding(new Insets(10));
         this.setTop(labelSequence);
         this.setBottom(dialogBottom);
+        this.blockFutureModifyOnTopBottom();
     }
 
     public SegmentDialog(@NotNull ResourceBundle resourceBundle,
@@ -70,6 +72,33 @@ public class SegmentDialog extends BorderPane
 
     private void init(SegmentSequence segmentSequence) {
         this.changed(segmentSequence.focusedSegmentProperty(), null, segmentSequence.getFocusedSegment());
+    }
+
+    private void blockFutureModifyOnTopBottom() {
+        this.topProperty().addListener((observable, oldValue, newValue) -> {
+            setTop(oldValue);
+            throw new UnsupportedOperationException("Can't change the top of a SegmentDialog");
+        });
+        this.bottomProperty().addListener((observable, oldValue, newValue) -> {
+            setBottom(oldValue);
+            throw new UnsupportedOperationException("Can't change the bottom of a SegmentDialog");
+        });
+    }
+
+    public final List<Button> getCustomButtons() {
+        return this.dialogBottom.getCustomButtons();
+    }
+
+    public final void setCustomButtons(List<Button> customButtons) {
+        this.dialogBottom.setCustomButtons(customButtons);
+    }
+
+    public final Node getPlaceHolder() {
+        return placeHolder;
+    }
+
+    public final SegmentSequence getSegmentSequence() {
+        return segmentSequence;
     }
 
     @Override

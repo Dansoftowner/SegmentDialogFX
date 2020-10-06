@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 class SegmentDialogBottom extends BorderPane
         implements ChangeListener<Segment> {
@@ -57,12 +59,7 @@ class SegmentDialogBottom extends BorderPane
         nextItemButton.setOnAction(event -> segmentSequence.navigateNext());
         prevItemButton.setOnAction(event -> segmentSequence.navigateBack());
 
-        if (customButtons != null) {
-            HBox hbox = new HBox();
-            hbox.getChildren().addAll(customButtons);
-            this.setLeft(hbox);
-        }
-
+        this.setCustomButtons(customButtons);
         this.setRight(rightBox);
 
         segmentSequence.focusedSegmentProperty().addListener(this);
@@ -104,6 +101,21 @@ class SegmentDialogBottom extends BorderPane
                 prevItemTextProperty.set(resourceBundle.getString(PREV_BUTTON_STRING), previousSegment.getTitle());
             }
         }
+    }
+
+    public void setCustomButtons(List<Button> customButtons) {
+        if (customButtons != null) {
+            HBox hbox = new HBox();
+            hbox.getChildren().addAll(customButtons);
+            this.setLeft(hbox);
+        }
+    }
+
+    public List<Button> getCustomButtons() {
+        return ((Pane) this.getLeft()).getChildren().stream()
+                .filter(node -> node instanceof Button)
+                .map(node -> (Button) node)
+                .collect(Collectors.toList());
     }
 
     private static final class BiStringProperty extends SimpleStringProperty {
