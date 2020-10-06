@@ -71,14 +71,13 @@ public class SegmentDialog extends BorderPane
 
         logger.debug(String.format("Segment changed: %s", newValue.getTitle()));
 
-        Optional<Segment> oldSegmentOptional = Optional.ofNullable(oldValue);
-        oldSegmentOptional.ifPresent(segment -> segment.onSegmentHidden(this));
-
         Optional<Segment> newSegmentOptional = Optional.of(newValue);
         newSegmentOptional.ifPresent(segment -> {
             setCenter(segment.getContent());
             segment.onSegmentFocused(this);
         });
 
+        Optional<Segment> oldSegmentOptional = Optional.ofNullable(oldValue);
+        oldSegmentOptional.ifPresent(segment -> segment.onSegmentHidden(this));
     }
 }

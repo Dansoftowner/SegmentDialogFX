@@ -1,3 +1,5 @@
+/** SegmentDialog API styles **/
+
 .segmentDialog {
 }
 
@@ -26,4 +28,10 @@
 
 .segmentLabel:focused {
     -fx-font-weight: bold;
+}
+
+/* Custom */
+
+.radio-button:hover {
+    -fx-background-color: #a5c4d9;
 }

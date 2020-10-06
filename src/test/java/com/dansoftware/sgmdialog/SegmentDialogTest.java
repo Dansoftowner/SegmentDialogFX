@@ -14,13 +14,12 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class SegmentDialogTest extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentDialogTest.class);
 
-    private static final String TEST_STYLE_SHEET = "/com/dansoftware/sgmdialog/stylesheet.css";
+    private static final String TEST_STYLE_SHEET = "/com/dansoftware/sgmdialog/stylesheet_light.css";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -46,7 +45,7 @@ public class SegmentDialogTest extends Application {
     private List<Segment> getSegments() {
         return Arrays.asList(
                 new LanguageSegment(),
-                new SegmentTwo(),
+                new ThemeSegment(),
                 new SegmentThree()
         );
     }
