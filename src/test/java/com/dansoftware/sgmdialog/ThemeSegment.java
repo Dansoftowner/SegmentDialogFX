@@ -13,6 +13,7 @@ import javafx.scene.control.ToggleGroup;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,12 +54,13 @@ public class ThemeSegment extends Segment implements Initializable, ChangeListen
     }
 
     @Override
-    protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
+    protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
         logger.debug("Selected theme is: {}", ((ToggleButton) themeGroup.getSelectedToggle()).getText());
     }
 
     @Override
-    protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+    protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
+        new animatefx.animation.SlideInLeft(getContent()).play();
     }
 
     @Override

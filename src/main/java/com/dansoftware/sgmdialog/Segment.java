@@ -2,6 +2,7 @@ package com.dansoftware.sgmdialog;
 
 import javafx.scene.Node;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -17,10 +18,10 @@ public abstract class Segment {
         return title;
     }
 
-    protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
+    protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
     }
 
-    protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+    protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
     }
 
     protected abstract Node getContent();

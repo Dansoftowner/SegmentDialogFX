@@ -4,16 +4,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class LanguageSegment extends Segment
         implements Initializable {
@@ -23,7 +24,7 @@ public class LanguageSegment extends Segment
     private Node content;
 
     @FXML
-    private ListView<String> listView;
+    private ListView<Locale> listView;
 
     public LanguageSegment() {
         super("Default language");
@@ -42,17 +43,19 @@ public class LanguageSegment extends Segment
     }
 
     @Override
-    protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
+    protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
         logger.debug("Selected language: {}", listView.getSelectionModel().getSelectedItem());
     }
 
     @Override
-    protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
-
+    protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
+        new animatefx.animation.SlideInLeft(content).play();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listView.getItems().addAll(Locale.getISOLanguages());
+        listView.getItems().addAll(Arrays.stream(Locale.getAvailableLocales()).skip(1).collect(Collectors.toList()));
+        listView.getSelectionModel().select(Locale.getDefault());
+        listView.scrollTo(Locale.getDefault());
     }
 }

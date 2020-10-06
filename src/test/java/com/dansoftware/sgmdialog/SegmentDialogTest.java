@@ -50,50 +50,6 @@ public class SegmentDialogTest extends Application {
         );
     }
 
-    private static final class SegmentOne extends Segment {
-
-        public SegmentOne() {
-            super("Segment 1");
-        }
-
-        @Override
-        protected Node getContent() {
-            return new Label("Sg One");
-        }
-
-        @Override
-        protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
-            logger.debug(String.format("%s is hidden", getClass().getSimpleName()));
-        }
-
-        @Override
-        protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
-            logger.debug(String.format("%s is focused", getClass().getSimpleName()));
-        }
-    }
-
-    private static final class SegmentTwo extends Segment {
-
-        public SegmentTwo() {
-            super("Segment 2");
-        }
-
-        @Override
-        protected Node getContent() {
-            return new Label("Sg Two");
-        }
-
-        @Override
-        protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
-            logger.debug(String.format("%s is hidden", getClass().getSimpleName()));
-        }
-
-        @Override
-        protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
-            logger.debug(String.format("%s is focused", getClass().getSimpleName()));
-        }
-    }
-
     private static final class SegmentThree extends Segment {
 
         public SegmentThree() {
