@@ -32,12 +32,15 @@ public class SegmentDialog extends BorderPane
                          @NotNull SegmentSequence segmentSequence,
                          @Nullable List<Button> customButtons,
                          @Nullable Node placeHolder) {
-        this.getStyleClass().add(STYLE_CLASS);
-        this.segmentSequence = Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
+        Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
+        checkSegmentSequenceCompatibility(segmentSequence);
+        this.segmentSequence = segmentSequence;
+        this.segmentSequence.setSegmentDialog(this);
         this.labelSequence = new SegmentLabelSequence(segmentSequence);
         this.dialogBottom = new SegmentDialogBottom(resourceBundle, customButtons, segmentSequence);
         this.placeHolder = placeHolder;
         this.segmentSequence.focusedSegmentProperty().addListener(this);
+        this.getStyleClass().add(STYLE_CLASS);
         this.init(segmentSequence);
         this.setPadding(new Insets(10));
         this.setTop(labelSequence);
@@ -57,6 +60,12 @@ public class SegmentDialog extends BorderPane
 
     public SegmentDialog(@NotNull SegmentSequence segmentSequence) {
         this(ResourceBundle.getBundle("com.dansoftware.sgmdialog.BaseSgmDialogValues"), segmentSequence, null, null);
+    }
+
+    private void checkSegmentSequenceCompatibility(SegmentSequence segmentSequence) {
+        if (this == segmentSequence.getSegmentDialog()) {
+            throw new AlreadyUsedSequenceException("The passed sequence is already used by another dialog");
+        }
     }
 
     private void init(SegmentSequence segmentSequence) {
@@ -80,5 +89,11 @@ public class SegmentDialog extends BorderPane
 
         Optional<Segment> oldSegmentOptional = Optional.ofNullable(oldValue);
         oldSegmentOptional.ifPresent(segment -> segment.onSegmentHidden(this));
+    }
+
+    public static final class AlreadyUsedSequenceException extends RuntimeException {
+        AlreadyUsedSequenceException(String msg) {
+            super(msg);
+        }
     }
 }

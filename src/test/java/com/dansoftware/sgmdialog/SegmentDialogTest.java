@@ -23,52 +23,16 @@ public class SegmentDialogTest extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        SegmentDialog segmentDialog = new SegmentDialog(getSegmentSequenceImplementation());
+        SegmentDialog segmentDialog = new ConfigurationSegmentDialog();
         segmentDialog.getStyleClass().add(JMetroStyleClass.BACKGROUND);
 
         Scene scene = new Scene(segmentDialog);
         new JMetro(Style.LIGHT).setScene(scene);
         scene.getStylesheets().add(TEST_STYLE_SHEET);
         primaryStage.setScene(scene);
+        primaryStage.setWidth(900);
+        primaryStage.setHeight(600);
+        primaryStage.setResizable(false);
         primaryStage.show();
-    }
-
-    private SegmentSequence getSegmentSequenceImplementation() {
-        return new SegmentSequence(getSegments()) {
-            @Override
-            protected void onSegmentsFinished() {
-                logger.debug("All segments are now done");
-            }
-        };
-    }
-
-    private List<Segment> getSegments() {
-        return Arrays.asList(
-                new LanguageSegment(),
-                new ThemeSegment(),
-                new SegmentThree()
-        );
-    }
-
-    private static final class SegmentThree extends Segment {
-
-        public SegmentThree() {
-            super("Segment 3");
-        }
-
-        @Override
-        protected Node getContent() {
-            return new Label("Sg Three");
-        }
-
-        @Override
-        protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
-            logger.debug(String.format("%s is hidden", getClass().getSimpleName()));
-        }
-
-        @Override
-        protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
-            logger.debug(String.format("%s is focused", getClass().getSimpleName()));
-        }
     }
 }

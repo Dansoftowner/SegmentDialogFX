@@ -15,6 +15,8 @@ public abstract class SegmentSequence implements Iterable<Segment> {
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentSequence.class);
 
+    private SegmentDialog segmentDialog;
+
     private final ObjectProperty<Segment> focusedSegment;
     private final List<Segment> segments;
 
@@ -26,6 +28,14 @@ public abstract class SegmentSequence implements Iterable<Segment> {
 
     public SegmentSequence(Segment... segments) {
         this(Arrays.asList(segments));
+    }
+
+    SegmentDialog getSegmentDialog() {
+        return segmentDialog;
+    }
+
+    void setSegmentDialog(SegmentDialog segmentDialog) {
+        this.segmentDialog = segmentDialog;
     }
 
     public boolean isSegmentFirst(Segment segment) {
@@ -80,7 +90,7 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         if (next != null) {
             focusedSegment.set(next);
         } else {
-            onSegmentsFinished();
+            onSegmentsFinished(segmentDialog);
         }
     }
 
@@ -90,5 +100,5 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         return segments.iterator();
     }
 
-    protected abstract void onSegmentsFinished();
+    protected abstract void onSegmentsFinished(@Nullable SegmentDialog segmentDialog);
 }
