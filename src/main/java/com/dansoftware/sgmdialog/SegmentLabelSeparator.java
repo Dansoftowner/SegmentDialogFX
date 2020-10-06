@@ -5,13 +5,10 @@ import javafx.scene.layout.StackPane;
 
 class SegmentLabelSeparator extends StackPane {
 
-    private static final String CLASS_NAME = "segmentLabelSeparator";
+    private static final String STYLE_CLASS = "segmentLabelSeparator";
 
     SegmentLabelSeparator() {
-        getStyleClass().add(CLASS_NAME);
-        /*setScaleX(0.4);
-        setScaleY(0.4);*/
-
+        getStyleClass().add(STYLE_CLASS);
         ImageView imageView = new ImageView();
         imageView.getStyleClass().add("graphic");
         getChildren().add(imageView);
