@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -29,12 +30,12 @@ public class SegmentDialog extends BorderPane
 
     public SegmentDialog(@NotNull ResourceBundle resourceBundle,
                          @NotNull SegmentSequence segmentSequence,
-                         @Nullable Button customButton,
+                         @Nullable List<Button> customButtons,
                          @Nullable Node placeHolder) {
         this.getStyleClass().add(STYLE_CLASS);
         this.segmentSequence = Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
         this.labelSequence = new SegmentLabelSequence(segmentSequence);
-        this.dialogBottom = new SegmentDialogBottom(resourceBundle, customButton, segmentSequence);
+        this.dialogBottom = new SegmentDialogBottom(resourceBundle, customButtons, segmentSequence);
         this.placeHolder = placeHolder;
         this.segmentSequence.focusedSegmentProperty().addListener(this);
         this.init(segmentSequence);
