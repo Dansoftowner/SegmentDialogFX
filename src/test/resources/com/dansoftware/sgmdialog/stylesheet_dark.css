@@ -11,8 +11,8 @@
 
 .segmentLabelArea {
     -fx-padding: 5 5 10 5;
-    -fx-border-width: 0 0 0.4 0;
-    -fx-border-color: lightgray;
+    /*-fx-border-width: 0 0 0.4 0;
+    -fx-border-color: lightgray;*/
 }
 
 .segmentDialogBottom {
@@ -28,6 +28,8 @@
 
 .segmentLabel:focused {
     -fx-font-weight: bold;
+    -fx-border-width: 0 0 2.5 0;
+    -fx-border-color: #00ccff;
 }
 
 /* Custom */

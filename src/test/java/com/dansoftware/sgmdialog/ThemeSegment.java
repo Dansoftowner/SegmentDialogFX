@@ -60,7 +60,6 @@ public class ThemeSegment extends Segment implements Initializable, ChangeListen
 
     @Override
     protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
-        new animatefx.animation.SlideInLeft(getContent()).play();
     }
 
     @Override

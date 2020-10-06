@@ -45,11 +45,12 @@ public class LanguageSegment extends Segment
     @Override
     protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
         logger.debug("Selected language: {}", listView.getSelectionModel().getSelectedItem());
+        Locale.setDefault(listView.getSelectionModel().getSelectedItem());
     }
 
     @Override
     protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
-        new animatefx.animation.SlideInLeft(content).play();
+
     }
 
     @Override
