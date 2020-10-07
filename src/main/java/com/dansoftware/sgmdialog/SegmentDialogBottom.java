@@ -40,9 +40,9 @@ class SegmentDialogBottom extends BorderPane
 
     private final ResourceBundle resourceBundle;
 
-    public SegmentDialogBottom(@NotNull ResourceBundle resourceBundle,
-                               @Nullable List<Button> customButtons,
-                               @NotNull SegmentSequence segmentSequence) {
+    SegmentDialogBottom(@NotNull ResourceBundle resourceBundle,
+                        @Nullable List<Button> customButtons,
+                        @NotNull SegmentSequence segmentSequence) {
         this.getStyleClass().add(STYLE_CLASS);
         this.resourceBundle = Objects.requireNonNull(resourceBundle, "ResourceBundle is needed!");
         this.segmentSequence = Objects.requireNonNull(segmentSequence, "segmentSequence shouldn't be null");
@@ -66,8 +66,8 @@ class SegmentDialogBottom extends BorderPane
         this.init(segmentSequence);
     }
 
-    public SegmentDialogBottom(@NotNull ResourceBundle resourceBundle,
-                               @NotNull SegmentSequence segmentSequence) {
+    SegmentDialogBottom(@NotNull ResourceBundle resourceBundle,
+                        @NotNull SegmentSequence segmentSequence) {
         this(resourceBundle, null, segmentSequence);
     }
 
@@ -116,6 +116,14 @@ class SegmentDialogBottom extends BorderPane
                 .filter(node -> node instanceof Button)
                 .map(node -> (Button) node)
                 .collect(Collectors.toList());
+    }
+
+    public Button getNextItemButton() {
+        return nextItemButton;
+    }
+
+    public Button getPrevItemButton() {
+        return prevItemButton;
     }
 
     private static final class BiStringProperty extends SimpleStringProperty {

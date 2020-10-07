@@ -1,5 +1,6 @@
 package com.dansoftware.sgmdialog;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -91,6 +92,14 @@ public class SegmentDialog extends BorderPane
 
     public final void setCustomButtons(List<Button> customButtons) {
         this.dialogBottom.setCustomButtons(customButtons);
+    }
+
+    public final BooleanProperty nextButtonDisableProperty() {
+        return this.dialogBottom.getNextItemButton().disableProperty();
+    }
+
+    public final BooleanProperty prevButtonDisableProperty() {
+        return this.dialogBottom.getPrevItemButton().disableProperty();
     }
 
     public final Node getPlaceHolder() {

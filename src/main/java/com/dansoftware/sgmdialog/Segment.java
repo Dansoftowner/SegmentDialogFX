@@ -18,10 +18,13 @@ public abstract class Segment {
         return title;
     }
 
-    protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
+    protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
     }
 
-    protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
+    protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+    }
+
+    protected void onSegmentSkipped(@NotNull SegmentDialog segmentDialog) {
     }
 
     protected abstract Node getContent();

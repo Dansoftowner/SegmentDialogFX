@@ -78,14 +78,14 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         return null;
     }
 
-    public final void navigateBack() {
+    final void navigateBack() {
         Segment prev = getPrevFrom(this.focusedSegment.get());
         if (prev != null) {
             focusedSegment.set(prev);
         }
     }
 
-    public final void navigateNext() {
+    final void navigateNext() {
         Segment next = getNextFrom(this.focusedSegment.get());
         if (next != null) {
             focusedSegment.set(next);
@@ -95,10 +95,9 @@ public abstract class SegmentSequence implements Iterable<Segment> {
     }
 
     public final void skipAll() {
-        for (Segment segment : this) {
-            segment.onSegmentFocused(null);
-            segment.onSegmentHidden(null);
-        }
+        for (Segment segment : this)
+            segment.onSegmentSkipped(segmentDialog);
+        onSegmentsFinished(segmentDialog);
     }
 
     @NotNull
@@ -107,5 +106,5 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         return segments.iterator();
     }
 
-    protected abstract void onSegmentsFinished(@Nullable SegmentDialog segmentDialog);
+    protected abstract void onSegmentsFinished(@NotNull SegmentDialog segmentDialog);
 }
