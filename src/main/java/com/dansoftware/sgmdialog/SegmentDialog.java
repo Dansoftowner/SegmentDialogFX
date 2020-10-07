@@ -1,7 +1,6 @@
 package com.dansoftware.sgmdialog;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -18,6 +17,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * A {@link SegmentDialog} is a wizard-like dialog that consists of {@link Segment}s.
+ *
+ * <p>
+ * Requires a {@link SegmentSequence} object that defines the {@link Segment}s and the order of them.
+ *
+ * @author Daniel Gyorffy
+ */
 public class SegmentDialog extends BorderPane
         implements ChangeListener<Segment> {
 
@@ -117,7 +124,7 @@ public class SegmentDialog extends BorderPane
             return;
         }
 
-        logger.debug(String.format("Segment changed: %s", newValue.getTitle()));
+        logger.debug(String.format("Segment changed: %s", newValue.getName()));
 
         Optional<Segment> newSegmentOptional = Optional.of(newValue);
         newSegmentOptional.ifPresent(segment -> {

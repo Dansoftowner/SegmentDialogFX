@@ -85,7 +85,7 @@ class SegmentDialogBottom extends BorderPane
                 nextItemTextProperty.setFixValue(resourceBundle.getString(FINISH_BUTTON_STRING));
             } else {
                 Segment nextSegment = segmentSequence.getNextFrom(newValue);
-                nextItemTextProperty.set(resourceBundle.getString(NEXT_BUTTON_STRING), nextSegment.getTitle());
+                nextItemTextProperty.set(resourceBundle.getString(NEXT_BUTTON_STRING), nextSegment.getName());
             }
 
             if (segmentSequence.isSegmentFirst(newValue)) {
@@ -98,7 +98,7 @@ class SegmentDialogBottom extends BorderPane
                 }
 
                 Segment previousSegment = segmentSequence.getPrevFrom(newValue);
-                prevItemTextProperty.set(resourceBundle.getString(PREV_BUTTON_STRING), previousSegment.getTitle());
+                prevItemTextProperty.set(resourceBundle.getString(PREV_BUTTON_STRING), previousSegment.getName());
             }
         }
     }

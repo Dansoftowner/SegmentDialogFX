@@ -30,7 +30,7 @@ class SegmentLabelSequence extends HBox
     private void createGui(SegmentSequence segmentSequence) {
         for (Iterator<Segment> iterator = segmentSequence.iterator(); iterator.hasNext(); ) {
             Segment segment = iterator.next();
-            SegmentLabel label = new SegmentLabel(segment.getTitle());
+            SegmentLabel label = new SegmentLabel(segment.getName());
             segmentLabelMap.put(segment, label);
             this.getChildren().add(label);
             if (iterator.hasNext())
