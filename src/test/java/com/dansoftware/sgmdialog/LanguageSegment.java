@@ -1,11 +1,13 @@
 package com.dansoftware.sgmdialog;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,14 +45,22 @@ public class LanguageSegment extends Segment
     }
 
     @Override
-    protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
+    protected void onSegmentSkipped(@NotNull SegmentDialog segmentDialog) {
+        logger.debug("LanguageSegment is skipped");
+        logger.debug("Default language selected: {}", Locale.getDefault());
+    }
+
+    @Override
+    protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
         logger.debug("Selected language: {}", listView.getSelectionModel().getSelectedItem());
         Locale.setDefault(listView.getSelectionModel().getSelectedItem());
     }
 
     @Override
-    protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
-
+    protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
+        segmentDialog.nextButtonDisableProperty().unbind();
+        BooleanBinding empty = Bindings.isNull(listView.getSelectionModel().selectedItemProperty());
+        segmentDialog.nextButtonDisableProperty().bind(empty);
     }
 
     @Override

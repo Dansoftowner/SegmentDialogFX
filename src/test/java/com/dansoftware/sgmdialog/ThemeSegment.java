@@ -54,12 +54,18 @@ public class ThemeSegment extends Segment implements Initializable, ChangeListen
     }
 
     @Override
-    protected void onSegmentHidden(@Nullable SegmentDialog segmentDialog) {
+    protected void onSegmentSkipped(@NotNull SegmentDialog segmentDialog) {
+        logger.debug("ThemeSegment is skipped");
+        logger.debug("Default theme is 'Light'");
+    }
+
+    @Override
+    protected void onSegmentHidden(@NotNull SegmentDialog segmentDialog) {
         logger.debug("Selected theme is: {}", ((ToggleButton) themeGroup.getSelectedToggle()).getText());
     }
 
     @Override
-    protected void onSegmentFocused(@Nullable SegmentDialog segmentDialog) {
+    protected void onSegmentFocused(@NotNull SegmentDialog segmentDialog) {
     }
 
     @Override
