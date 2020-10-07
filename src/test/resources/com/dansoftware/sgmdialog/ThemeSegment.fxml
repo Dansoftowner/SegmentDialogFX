@@ -13,60 +13,42 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+   <children>
+      <VBox>
          <children>
-            <VBox>
+            <HBox spacing="10.0">
                <children>
-                  <HBox spacing="10.0">
-                     <children>
-                        <RadioButton fx:id="darkThemeToggle" contentDisplay="BOTTOM" mnemonicParsing="false" selected="true" text="Dark">
-                           <graphic>
-                              <ImageView fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@example-dark.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="themeGroup" />
-                           </toggleGroup>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="lightThemeToggle" contentDisplay="BOTTOM" mnemonicParsing="false" selected="true" text="Light" toggleGroup="$themeGroup">
-                           <graphic>
-                              <ImageView fitHeight="361.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@example-light.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </RadioButton>
-                     </children>
-                  </HBox>
+                  <RadioButton fx:id="darkThemeToggle" contentDisplay="BOTTOM" mnemonicParsing="false" selected="true" text="Dark">
+                     <graphic>
+                        <ImageView fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@example-dark.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="themeGroup" />
+                     </toggleGroup>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </RadioButton>
+                  <RadioButton fx:id="lightThemeToggle" contentDisplay="BOTTOM" mnemonicParsing="false" selected="true" text="Light" toggleGroup="$themeGroup">
+                     <graphic>
+                        <ImageView fitHeight="361.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@example-light.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </RadioButton>
                </children>
-            </VBox>
+            </HBox>
          </children>
-      </StackPane>
-   </center>
-   <top>
-      <BorderPane BorderPane.alignment="CENTER">
-         <left>
-            <Label text="Set UI theme" textFill="#656565" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets left="20.0" top="20.0" />
-               </BorderPane.margin>
-            </Label>
-         </left>
-      </BorderPane>
-   </top>
-</BorderPane>
+      </VBox>
+   </children>
+</StackPane>

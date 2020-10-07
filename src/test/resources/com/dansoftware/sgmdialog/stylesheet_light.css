@@ -32,7 +32,14 @@
     -fx-border-color: #356ec8;
 }
 
-/* Custom */
+/* TitledSegment */
+.segmentTitleLabel {
+    -fx-padding: 10;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+/** Custom **/
 
 .radio-button:hover {
     -fx-background-color: #a5c4d9;

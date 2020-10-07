@@ -13,7 +13,6 @@ import javafx.scene.control.ToggleGroup;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ThemeSegment extends Segment implements Initializable, ChangeListener<Toggle> {
+public class ThemeSegment extends TitledSegment implements Initializable, ChangeListener<Toggle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ThemeSegment.class);
 
@@ -38,7 +37,7 @@ public class ThemeSegment extends Segment implements Initializable, ChangeListen
     private RadioButton lightThemeToggle;
 
     public ThemeSegment() {
-        super("Themes");
+        super("Themes", "Set UI Theme");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ThemeSegment.fxml"));
             fxmlLoader.setController(this);
@@ -49,7 +48,7 @@ public class ThemeSegment extends Segment implements Initializable, ChangeListen
     }
 
     @Override
-    protected Node getContent() {
+    protected Node getCenterContent() {
         return root;
     }
 

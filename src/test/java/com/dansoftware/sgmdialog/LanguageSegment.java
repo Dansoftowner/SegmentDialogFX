@@ -40,7 +40,7 @@ public class LanguageSegment extends Segment
     }
 
     @Override
-    protected Node getContent() {
+    protected @NotNull Node getContent() {
         return content;
     }
 
