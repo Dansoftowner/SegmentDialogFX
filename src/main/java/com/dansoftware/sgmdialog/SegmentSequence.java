@@ -30,31 +30,31 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         this(Arrays.asList(segments));
     }
 
-    SegmentDialog getSegmentDialog() {
+    final SegmentDialog getSegmentDialog() {
         return segmentDialog;
     }
 
-    void setSegmentDialog(SegmentDialog segmentDialog) {
+    final void setSegmentDialog(SegmentDialog segmentDialog) {
         this.segmentDialog = segmentDialog;
     }
 
-    public boolean isSegmentFirst(Segment segment) {
+    public final boolean isSegmentFirst(Segment segment) {
         return this.segments.get(0).equals(segment);
     }
 
-    public boolean isSegmentLast(@Nullable Segment segment) {
+    public final boolean isSegmentLast(@Nullable Segment segment) {
         return this.segments.get(segments.size() - 1).equals(segment);
     }
 
-    public Segment getFocusedSegment() {
+    public final Segment getFocusedSegment() {
         return focusedSegment.get();
     }
 
-    public ObjectProperty<Segment> focusedSegmentProperty() {
+    public final ObjectProperty<Segment> focusedSegmentProperty() {
         return focusedSegment;
     }
 
-    public Segment getPrevFrom(Segment from) {
+    public final Segment getPrevFrom(Segment from) {
         Segment last = null;
         for (Segment segment : this) {
             if (segment.equals(from)) {
@@ -66,7 +66,7 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         return null;
     }
 
-    public Segment getNextFrom(Segment from) {
+    public final Segment getNextFrom(Segment from) {
         Segment last = null;
         for (Segment segment : this) {
             if (last != null && last.equals(from)) {
@@ -78,19 +78,26 @@ public abstract class SegmentSequence implements Iterable<Segment> {
         return null;
     }
 
-    public void navigateBack() {
+    public final void navigateBack() {
         Segment prev = getPrevFrom(this.focusedSegment.get());
         if (prev != null) {
             focusedSegment.set(prev);
         }
     }
 
-    public void navigateNext() {
+    public final void navigateNext() {
         Segment next = getNextFrom(this.focusedSegment.get());
         if (next != null) {
             focusedSegment.set(next);
         } else {
             onSegmentsFinished(segmentDialog);
+        }
+    }
+
+    public final void skipAll() {
+        for (Segment segment : this) {
+            segment.onSegmentFocused(null);
+            segment.onSegmentHidden(null);
         }
     }
 
